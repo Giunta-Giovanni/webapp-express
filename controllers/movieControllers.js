@@ -5,15 +5,24 @@ const connection = require('../data/db');
 // index
 function index(req, res) {
     // prepariamo la query
-    const postSql = `
+    const moviesSql = `
         SELECT*
         FROM movies
     `
-    connection.query(postSql, (err, moviesResults) => {
+    connection.query(moviesSql, (err, moviesResults) => {
         if (err) return res.status(500).json({ error: 'Database query failed' });
-        res.json(moviesResults)
+
+        // versione mappata del risultato
+        const movies = moviesResults.map(movie => {
+            return {
+                ...movie,
+                image: req.imagePath + movie.image
+            }
+        })
+        res.json(movies)
     })
 }
+
 // show
 function show(req, res) {
     // salviamo l'id dalla richiesta
