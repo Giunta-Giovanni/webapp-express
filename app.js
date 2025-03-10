@@ -3,9 +3,9 @@ const express = require('express');
 // inizializziamo express
 const app = express();
 // salviamo la porta di utilizzo
-const port = 3000;
+const port = process.env.PORT;
 // importiamo il router con le relative rotte
-const moviesRouter = require('./routes/movieRouter')
+const moviesRouter = require('./routes/movieRouter');
 
 // MIDDLEWARES
 // import middleware path immagine
