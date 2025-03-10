@@ -2,20 +2,25 @@
 const express = require('express');
 // importiamo express router
 const router = express.Router();
+// importiamo i controllers
+const controllers = require('../controllers/movieControllers')
+
+// destrutturiamo i controllers
+const { index, show, store, update, modify, destroy } = controllers
 
 // Rotte CRUD per la gestione dei dati del db:movies
 // index
-router.get('/', (req, res) => { res.json('questa è la rotta index') });
+router.get('/', index);
 // show
-router.get('/:id', (req, res) => { res.json('questa è la rotta show') });
+router.get('/:id', show);
 // store
-router.post('/', (req, res) => { res.json('questa è la rotta store') });
+router.post('/', store);
 // update
-router.put('/:id', (req, res) => { res.json('questa è la rotta update') })
+router.put('/:id', update)
 // modify
-router.patch('/:id', (req, res) => { res.json('questa è la rotta modify') })
+router.patch('/:id', modify)
 // destroy
-router.delete('/:id', (req, res) => { res.json('questa è la rotta delete') });
+router.delete('/:id', destroy);
 
 // ESPORTIAMO I MODULI DEI ROUTER
 module.exports = router;
