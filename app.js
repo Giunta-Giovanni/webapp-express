@@ -15,6 +15,11 @@ const errorsHandler = require('./middlewares/errorsHandler_mws');
 // import middleware errore 404
 const endPointNotFound = require('./middlewares/notFound_mws')
 
+// Importiamo CORS
+const cors = require('cors')
+
+// abilitiamo CORS per la richiesta specifica
+app.use(cors({ origin: 'http://localhost:5173' }))
 
 // colleghiamo l acartella con i file statici 
 app.use(express.static('public'));
