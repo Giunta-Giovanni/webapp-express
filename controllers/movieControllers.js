@@ -47,11 +47,15 @@ function show(req, res) {
         // recuperiamo il film
         const movie = movieResults[0];
 
+
         connection.query(reviewsSql, [id], (err, reviewsResults) => {
             if (err) return res.status(500).json({ error: 'Database query failed' })
             if (reviewsResults.length === 0) return res.status(404).json({ error: 'non ci sono reviews' });
             // inseriamo le reviews nel film
             movie.reviews = reviewsResults;
+
+            // aggiungiamo il valore path img da middleware
+            movie.image = req.imagePath + movie.image
             res.json(movie);
         })
     })

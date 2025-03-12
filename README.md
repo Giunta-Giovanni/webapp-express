@@ -15,3 +15,7 @@
 - Inserire le vostre rotte in un router;√
 - Inserire un middleware per le rotte inesistenti;√
 - Inserire un middleware per la gestione errori;√
+
+# PARTE 2
+Configuriamo l’app a ricevere chiamate dalla nostra applicazione React, installando e impostando il middleware CORS √
+
