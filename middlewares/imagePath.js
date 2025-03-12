@@ -4,4 +4,9 @@ function setImagePath(req, res, next) {
     next();
 }
 
-module.exports = setImagePath;
+function setBgImagePath(req, res, next) {
+    req.bgImagePath = `${req.protocol}://${req.get('host')}/img/bg_movies_cover/`;
+    next();
+}
+
+module.exports = { setImagePath, setBgImagePath };
