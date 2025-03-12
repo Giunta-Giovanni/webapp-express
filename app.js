@@ -19,7 +19,7 @@ const endPointNotFound = require('./middlewares/notFound_mws')
 const cors = require('cors')
 
 // abilitiamo CORS per la richiesta specifica
-app.use(cors({ origin: 'http://localhost:5173' }))
+app.use(cors({ origin: process.env.FE_APP }))
 
 // colleghiamo l acartella con i file statici 
 app.use(express.static('public'));
