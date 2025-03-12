@@ -8,8 +8,9 @@ const port = process.env.PORT;
 const moviesRouter = require('./routes/movieRouter');
 
 // MIDDLEWARES
-// import middleware path immagine
-const imagePathMiddleware = require('./middlewares/imagePath')
+// import middleware path immagini
+const { setImagePath, setBgImagePath } = require('./middlewares/imagePath')
+
 // import middleware errore 500
 const errorsHandler = require('./middlewares/errorsHandler_mws');
 // import middleware errore 404
@@ -28,7 +29,9 @@ app.use(express.static('public'));
 app.use(express.json());
 
 // gestiamo i percorsi delle immagini
-app.use(imagePathMiddleware)
+app.use(setImagePath)
+app.use(setBgImagePath)
+
 
 // importiamo la prima rotta: HOME
 app.get('/api/', (req, res) => { res.json('questa è la rotta home') })

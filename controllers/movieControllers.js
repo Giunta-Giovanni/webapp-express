@@ -16,7 +16,8 @@ function index(req, res) {
         const movies = moviesResults.map(movie => {
             return {
                 ...movie,
-                image: req.imagePath + movie.image
+                image: req.imagePath + movie.image,
+                bg_image: req.bgImagePath + movie.bg_image
             }
         })
         res.json(movies)
@@ -56,6 +57,7 @@ function show(req, res) {
 
             // aggiungiamo il valore path img da middleware
             movie.image = req.imagePath + movie.image
+            movie.bg_image = req.bgImagePath + movie.bg_image
             res.json(movie);
         })
     })
