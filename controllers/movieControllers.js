@@ -2,7 +2,7 @@
 const connection = require('../data/db');
 
 //funzioni crud
-// index
+// index -> Lista dei Film
 function index(req, res) {
     // prepariamo la query
     const moviesSql = `
@@ -24,7 +24,7 @@ function index(req, res) {
     })
 }
 
-// show
+// show -> dati del singolo film 
 function show(req, res) {
     // salviamo l'id dalla richiesta
     const { id } = req.params
@@ -63,8 +63,28 @@ function show(req, res) {
     })
 
 }
-// posts
-function store(req, res) { res.json('questa è la rotta store') }
+// posts new review
+function store(req, res) {
+    // ricaviamoci l'id
+    const { id } = req.params;
+
+    // le altre info dal body
+    const { text, name, vote } = req.body
+
+    // creiamo la query di richiesta
+    const newReviewSql = `
+    INSERT INTO reviews (text, name, vote, movie_id)
+    VALUES (?,?,?,?)
+    `;
+
+    // eseguiamo la query
+    connection.query(newReviewSql, [text, name, vote, id], (err, result) => {
+        if (err) return res.status(500).json({ error: 'Database query failed' })
+        // stato di conferma con restituzione un JSON con l'ID della recensione appena aggiunta
+        res.status(201);
+        res.json({ message: 'Review added', id: result.insertId })
+    })
+}
 //update
 function update(req, res) { { res.json('questa è la rotta update') } }
 //modify

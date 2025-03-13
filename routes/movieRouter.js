@@ -15,6 +15,8 @@ router.get('/', index);
 router.get('/:id', show);
 // store
 router.post('/', store);
+// store review
+router.post('/:id/reviews', store);
 // update
 router.put('/:id', update)
 // modify

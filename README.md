@@ -19,3 +19,7 @@
 # PARTE 2
 Configuriamo l’app a ricevere chiamate dalla nostra applicazione React, installando e impostando il middleware CORS √
 
+# PARTE 3
+Predisponiamo un’API per salvare nel database una nuova recensione legata ad un film
+Testiamola su postman e verifichiamo che nel DB venga effettivamente inserita una nuova recensione √
+
