@@ -23,3 +23,6 @@ Configuriamo l’app a ricevere chiamate dalla nostra applicazione React, instal
 Predisponiamo un’API per salvare nel database una nuova recensione legata ad un film
 Testiamola su postman e verifichiamo che nel DB venga effettivamente inserita una nuova recensione √
 
+# PARTE 4
+Predisponiamo un nuovo endpoint nell’API per salvare nel database un nuovo film √
+Testiamolo su postman e verifichiamo che nel DB venga effettivamente inserito un nuovo film √
