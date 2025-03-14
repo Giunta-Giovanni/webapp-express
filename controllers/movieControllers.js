@@ -1,4 +1,5 @@
 //Importiamo la connessione mysql del database movie
+const { status } = require('init');
 const connection = require('../data/db');
 
 //funzioni crud
@@ -63,8 +64,42 @@ function show(req, res) {
     })
 
 }
-// posts new review
+
 function store(req, res) {
+    // salviamo i dati di richiesta
+    const { title, director, genre, release_year, abstract } = req.body;
+
+    // assegnamo il nome del file
+    const coverImageName =
+        // se req.file = image esegui la condizione
+        req.files['image'] ?
+            // il nome del file è uguale a filename che si trova dentro l'oggetto req.file con nome image che ha come valore un array con dentro l'oggetto che avrà indice = 0
+            // da questo ricavami il file name
+            req.files['image'][0].filename
+            // se non lo trovi
+            :
+            // allora coverImageName è = a null
+            null;
+
+    const bgImageName = req.files['bg_image'] ? req.files['bg_image'][0].filename : null;
+
+    // Creiamo la query di insert
+    const sql = `
+    INSERT INTO movies (title, director, genre, release_year, abstract,image, bg_image) 
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    // Eseguiamo la query
+    connection.query(sql, [title, director, genre, release_year, abstract, coverImageName, bgImageName], (err, result) => {
+        console.log(err)
+        if (err) return res.status(500).json({ error: 'Database query failed' })
+        res.status(201);
+        res.json({ status: "succes", message: 'movie added' })
+    })
+}
+
+// posts new review
+function storeReview(req, res) {
     // ricaviamoci l'id
     const { id } = req.params;
 
@@ -93,4 +128,4 @@ function modify(req, res) { { res.json('questa è la rotta modify') } }
 function destroy(req, res) { { res.json('questa è la rotta delete') } }
 
 // esportiamo i controllers delle operazioni crud
-module.exports = { index, show, store, update, modify, destroy }
+module.exports = { index, show, store, storeReview, update, modify, destroy }
