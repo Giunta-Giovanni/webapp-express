@@ -15,10 +15,13 @@ function index(req, res) {
 
         // versione mappata del risultato
         const movies = moviesResults.map(movie => {
+            movie.image = movie.image ? `${req.imagePath}${movie.image}` : ""
+            movie.bg_image = movie.bg_image ? `${req.bgImagePath}${movie.bg_image}` : ""
+
             return {
                 ...movie,
-                image: req.imagePath + movie.image,
-                bg_image: req.bgImagePath + movie.bg_image
+                image: movie.image,
+                bg_image: movie.bg_image
             }
         })
         res.json(movies)
@@ -41,6 +44,11 @@ function show(req, res) {
                 FROM reviews
                 WHERE movie_id = ?;
                 `;
+    const voteAvgSql = `
+            SELECT ROUND(AVG(vote))
+            FROM reviews
+            WHERE movie_id = ?;
+    `
 
     // eseguiamo la query
     connection.query(movieSql, [id], (err, movieResults) => {
@@ -52,14 +60,20 @@ function show(req, res) {
 
         connection.query(reviewsSql, [id], (err, reviewsResults) => {
             if (err) return res.status(500).json({ error: 'Database query failed' })
-            if (reviewsResults.length === 0) return res.status(404).json({ error: 'non ci sono reviews' });
             // inseriamo le reviews nel film
             movie.reviews = reviewsResults;
 
-            // aggiungiamo il valore path img da middleware
-            movie.image = req.imagePath + movie.image
-            movie.bg_image = req.bgImagePath + movie.bg_image
-            res.json(movie);
+            connection.query(voteAvgSql, [id], (err, voteAvgResults) => {
+                if (err) return res.status(500).json({ error: 'Database query failed' })
+                //inseriamo la media nel film
+                movie.vote_avg = parseFloat(voteAvgResults[0]['ROUND(AVG(vote))'])
+
+
+                // aggiungiamo il valore path img da middleware
+                movie.image = movie.image ? `${req.imagePath}${movie.image}` : ""
+                movie.bg_image = movie.bg_image ? `${req.bgImagePath}${movie.bg_image}` : ""
+                res.json(movie);
+            })
         })
     })
 
@@ -85,9 +99,9 @@ function store(req, res) {
 
     // Creiamo la query di insert
     const sql = `
-    INSERT INTO movies (title, director, genre, release_year, abstract,image, bg_image) 
-    VALUES (?, ?, ?, ?, ?, ?, ?)
-    `;
+    INSERT INTO movies(title, director, genre, release_year, abstract, image, bg_image)
+            VALUES(?, ?, ?, ?, ?, ?, ?)
+                `;
 
     // Eseguiamo la query
     connection.query(sql, [title, director, genre, release_year, abstract, coverImageName, bgImageName], (err, result) => {
@@ -108,9 +122,9 @@ function storeReview(req, res) {
 
     // creiamo la query di richiesta
     const newReviewSql = `
-    INSERT INTO reviews (text, name, vote, movie_id)
-    VALUES (?,?,?,?)
-    `;
+    INSERT INTO reviews(text, name, vote, movie_id)
+            VALUES(?,?,?,?)
+                `;
 
     // eseguiamo la query
     connection.query(newReviewSql, [text, name, vote, id], (err, result) => {
