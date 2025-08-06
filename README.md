@@ -1,6 +1,6 @@
 # webapp-express
 
-### **🧩 Progettazione**
+### ** Progettazione**
 
 ### **Database**
 
@@ -13,7 +13,7 @@ Il progetto prevede la creazione di un **database relazionale** con **MySQL**, s
 
 ---
 
-### **🛠️ Sviluppo**
+### ** Sviluppo**
 
 ### **Backend**
 
@@ -34,7 +34,7 @@ La struttura è stata organizzata in:
 
 ---
 
-### **🧰 Tecnologie lato Backend e DevTools:**
+### ** Tecnologie lato Backend e DevTools:**
 
 - **Database relazionale**: MySQL
 - **Runtime**: Node.js
