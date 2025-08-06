@@ -43,7 +43,7 @@ La struttura è stata organizzata in:
 - **Librerie**: Axios (frontend), CORS, Multer
 - **Dev tool**: Postman per testing delle rotte
 
-MILESTONE
+# MILESTONE
 
 # PARTE 1
 
