@@ -40,7 +40,7 @@ La struttura è stata organizzata in:
 - **Runtime**: Node.js
 - **Linguaggio**: JavaScript
 - **Framework**: Express
-- **Librerie**: Axios (frontend), CORS, Multer
+- **Librerie**: CORS, Multer
 - **Dev tool**: Postman per testing delle rotte
 
 # MILESTONE
