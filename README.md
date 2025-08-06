@@ -2,7 +2,7 @@
 
 # Progettazione
 
-## **Database**
+### **Database**
 
 Il progetto prevede la creazione di un **database relazionale** con **MySQL**, strutturato secondo i principi di:
 
@@ -15,7 +15,7 @@ Il progetto prevede la creazione di un **database relazionale** con **MySQL**, s
 
 # Sviluppo
 
-## **Backend**
+### **Backend**
 
 Il backend è stato sviluppato con **Node.js** (runtime JavaScript) e il framework **Express**, e funge da interfaccia tra frontend e database.
 
@@ -45,7 +45,7 @@ La struttura è stata organizzata in:
 
 # MILESTONE
 
-## MILESTONE 1
+### MILESTONE 1
 
 1. Creiamo un database con MySQL Workbench
 2. Creiamo una nuova applicazione Express
@@ -53,7 +53,7 @@ La struttura è stata organizzata in:
 4. Prepariamo una rotta index per ottenere la lista dei film
 5. Prepariamo una rotta show per ottenere i dettagli di un singolo film e le sue recensioni
 
-### Bonus
+#### Bonus
 
 - Inserire delle immagini nel progetto express e dunque nel db;
 - Inserire i dati di connessione al database come variabili d’ambiente;
@@ -62,16 +62,16 @@ La struttura è stata organizzata in:
 - Inserire un middleware per le rotte inesistenti;
 - Inserire un middleware per la gestione errori;
 
-## MILESTONE 2
+### MILESTONE 2
 
 Configuriamo l’app a ricevere chiamate dalla nostra applicazione React, installando e impostando il middleware CORS
 
-## MILESTONE 3
+### MILESTONE 3
 
 Predisponiamo un’API per salvare nel database una nuova recensione legata ad un film
 Testiamola su postman e verifichiamo che nel DB venga effettivamente inserita una nuova recensione
 
-## MILESTONE 4
+### MILESTONE 4
 
 Predisponiamo un nuovo endpoint nell’API per salvare nel database un nuovo film
 Testiamolo su postman e verifichiamo che nel DB venga effettivamente inserito un nuovo film
